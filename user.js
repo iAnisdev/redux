@@ -1,3 +1,4 @@
+const { createStore, bindActionCreators,  applyMiddleware } = require('redux')
 const redux = require('redux')
 const produce = require('immer').produce
 
@@ -36,6 +37,16 @@ function updateJob({ title, company }) {
     }
 }
 
+function customLoggerMiddleWare (store){
+    console.table(store.getState())
+    return function (next){
+        return function(action){
+            console.log("Action called" , action)
+            next(action)
+        }
+    }
+}
+
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case NAME_UPDATE:
@@ -55,19 +66,11 @@ const reducer = (state = initialState, action) => {
     }
 }
 
-const store = redux.createStore(reducer)
+const store = createStore(reducer , applyMiddleware(customLoggerMiddleWare))
 
-const actions = redux.bindActionCreators({updateName , updateEmail , updateJob} , store.dispatch)
-
-console.log('Initial State is ' , store.getState())
-
-const unsubscribe = store.subscribe(() => {
-    console.log("Updated value is " , store.getState())
-})
+const actions = bindActionCreators({updateName , updateEmail , updateJob} , store.dispatch)
 
 
 actions.updateName('Max')
 actions.updateEmail('Max@def.com')
 actions.updateJob({title: 'fullstack' , company: 'line'})
-
-unsubscribe()
