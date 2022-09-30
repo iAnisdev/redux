@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/iAnisdev/redux#readme",
   "dependencies": {
+    "immer": "^9.0.15",
     "redux": "^4.2.0"
   }
 }
