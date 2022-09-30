@@ -4,7 +4,8 @@
   "description": "Redux Basic",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/iAnisdev/redux/issues"
   },
-  "homepage": "https://github.com/iAnisdev/redux#readme"
+  "homepage": "https://github.com/iAnisdev/redux#readme",
+  "dependencies": {
+    "redux": "^4.2.0"
+  }
 }
