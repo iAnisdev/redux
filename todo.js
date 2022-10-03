@@ -1,5 +1,4 @@
 const { createStore, bindActionCreators, applyMiddleware } = require('redux')
-const { logger } = require('redux-logger')
 const ReduxThunk = require('redux-thunk').default
 const { produce } = require('immer')
 const axios = require('axios')
@@ -74,11 +73,8 @@ const fetchTodo = () => {
         })
     }
 }
-// const createStoreWithMiddleware = applyMiddleware(ReduxThunk, logger)(createStore);
 
 const store = createStore(reducer, applyMiddleware(ReduxThunk))
-
-const actions = bindActionCreators({ TodosRequested, TodosFetched, TodosFailed }, store.dispatch)
 
 const unsubscribe = store.subscribe(() => {
     console.log(store.getState())
@@ -86,4 +82,4 @@ const unsubscribe = store.subscribe(() => {
 
 store.dispatch(fetchTodo())
 
-// unsubscribe()
+unsubscribe()
