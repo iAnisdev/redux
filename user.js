@@ -38,7 +38,6 @@ function updateJob({ title, company }) {
 }
 
 function customLoggerMiddleWare (store){
-    console.table(store.getState())
     return function (next){
         return function(action){
             console.log("Action called" , action)
